@@ -1,7 +1,20 @@
-import React from 'react';
-import Tour from './Tour';
-const Tours = () => {
-  return <h2>tours component</h2>;
-};
+import Tour from './Tour'
+import React from 'react'
 
-export default Tours;
+const Tours = ({ tours }) => {
+  console.log(tours)
+  return (
+    <>
+      <h2>tours component</h2>
+      {tours.map((tour) => {
+        return (
+          <div>
+            <Tour tour={tour} />
+          </div>
+        )
+      })}
+    </>
+  )
+}
+
+export default Tours
