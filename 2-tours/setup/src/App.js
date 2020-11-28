@@ -10,11 +10,16 @@ function App() {
   const [tours, setTours] = useState([])
 
   const getTours = async () => {
-    const response = await fetch(url)
-    const tours = await response.json()
-    // console.log(tours)
-    setTours(tours)
-    setLoading(!loading)
+    try {
+      const response = await fetch(url)
+      const tours = await response.json()
+      // console.log(tours)
+      setTours(tours)
+      setLoading(!loading)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -30,10 +35,10 @@ function App() {
     )
   }
   return (
-    <>
+    <main>
       <h2>Tours Project Setup</h2>
       <Tours tours={tours} />
-    </>
+    </main>
   )
 }
 

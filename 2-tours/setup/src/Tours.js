@@ -8,7 +8,7 @@ const Tours = ({ tours }) => {
       <h2>tours component</h2>
       {tours.map((tour) => {
         return (
-          <div>
+          <div tour={tour.id}>
             <Tour tour={tour} />
           </div>
         )
