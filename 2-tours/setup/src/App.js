@@ -9,6 +9,12 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [tours, setTours] = useState([])
 
+  const removeItem = (id) => {
+    console.log(id)
+    const newTours = tours.filter((tour) => tour.id !== id)
+    setTours(newTours)
+  }
+
   const getTours = async () => {
     try {
       const response = await fetch(url)
@@ -37,7 +43,7 @@ function App() {
   return (
     <main>
       {/* <h2>Tours Project Setup</h2> */}
-      <Tours tours={tours} />
+      <Tours tours={tours} removeItem={removeItem} />
     </main>
   )
 }
