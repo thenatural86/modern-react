@@ -4,21 +4,38 @@ import { FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa'
 
 const Review = () => {
   // console.log(people)
-  const [person, setPerson] = useState(people[0])
-  console.log(person)
-  const { id, name, job, image, text } = person
+  const [index, setIndex] = useState(0)
+  const { id, name, job, image, text } = people[index]
   return (
-    <div key={id}>
-      <h2>review component</h2>
-      <FaChevronLeft />
-      <FaChevronRight />
-      <FaQuoteRight />
-      <p>{name}</p>
-      <img src={image} alt={name} />
-      <p>{text}</p>
-      <p>{job}</p>
-    </div>
+    <article className='review'>
+      <div key={id}>
+        <h2>review component</h2>
+        <div className='img-container'>
+          <img src={image} alt={name} className='person-img' />
+          <span className='quote-icon'>
+            <FaQuoteRight />
+          </span>
+        </div>
+      </div>
+      <h4 className='author'>{name}</h4>
+      <p className='job'>{job}</p>
+      <p className='info'>{text}</p>
+      <div className='button-container'>
+        <button className='prev-btn'>
+          <FaChevronLeft />
+        </button>
+        <button className='next-btn'>
+          <FaChevronRight />
+        </button>
+      </div>
+      <button className='random-btn'>Yolo Button</button>
+    </article>
   )
+}
+{
+  // <FaChevronLeft />
+  {
+  }
 }
 
 export default Review

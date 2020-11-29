@@ -2,10 +2,15 @@ import React from 'react'
 import Review from './Review'
 function App() {
   return (
-    <section>
-      <h2>Yolo World</h2>;
-      <Review />
-    </section>
+    <main>
+      <section className='container'>
+        <div className='title'>
+          <h2>Our Reviews</h2>
+          <div className='underline'></div>
+        </div>
+        <Review />
+      </section>
+    </main>
   )
 }
 
