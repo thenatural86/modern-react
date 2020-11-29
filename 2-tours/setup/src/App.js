@@ -10,18 +10,17 @@ function App() {
   const [tours, setTours] = useState([])
 
   const removeItem = (id) => {
-    console.log(id)
     const newTours = tours.filter((tour) => tour.id !== id)
     setTours(newTours)
   }
 
   const getTours = async () => {
+    setLoading(true)
     try {
       const response = await fetch(url)
       const tours = await response.json()
-      // console.log(tours)
+      setLoading(false)
       setTours(tours)
-      setLoading(!loading)
     } catch (error) {
       setLoading(false)
       console.log(error)
@@ -32,11 +31,22 @@ function App() {
     getTours()
   }, [])
 
-  // console.log(tours)
   if (loading) {
     return (
       <main>
         <Loading />
+      </main>
+    )
+  }
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className='title'>
+          <h2>no tours left</h2>
+          <button className='btn' onClick={() => getTours()}>
+            Yolo Tours
+          </button>
+        </div>
       </main>
     )
   }
