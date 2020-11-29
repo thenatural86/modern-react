@@ -1,7 +1,12 @@
-import React from 'react';
-import Review from './Review';
+import React from 'react'
+import Review from './Review'
 function App() {
-  return <h2>reviews project setup</h2>;
+  return (
+    <section>
+      <h2>Yolo World</h2>;
+      <Review />
+    </section>
+  )
 }
 
-export default App;
+export default App
