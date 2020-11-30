@@ -5,16 +5,24 @@ import items from './data'
 
 function App() {
   const [foods, setFood] = useState(items)
+
   return (
     <main>
-      <section>
-        {foods.map((food) => {
-          return (
-            <div key={food.id}>
-              <Menu {...food} />
-            </div>
-          )
-        })}
+      <section className='menu section'>
+        <div className='title'>
+          <h2>Goodies</h2>
+          <div className='underline'></div>
+        </div>
+        <div className='section-center'>
+          {/* <Categories /> */}
+          {foods.map((food) => {
+            return (
+              <article className='menu-item' key={food.id}>
+                <Menu {...food} />
+              </article>
+            )
+          })}
+        </div>
       </section>
     </main>
   )
