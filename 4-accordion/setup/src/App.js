@@ -2,7 +2,14 @@ import React, { useState } from 'react'
 import data from './data'
 import SingleQuestion from './Question'
 function App() {
-  return <h2>accordion project setup</h2>
+  const [items, setItems] = useState(data)
+
+  return (
+    <>
+      <h2>Yolo</h2>
+      <SingleQuestion items={items} />
+    </>
+  )
 }
 
 export default App
