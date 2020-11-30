@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
-const Question = ({ items }) => {
-  return (
-    <div>
-      {items.map((item) => {
-        return <h4>{item.title}</h4>
-      })}
-    </div>
-  )
+const Question = ({ id, title, info }) => {
+  console.log(id, title, info)
+  return <h2>question component</h2>
 }
 
 export default Question

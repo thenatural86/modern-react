@@ -52,7 +52,6 @@ function App() {
   }
   return (
     <main>
-      {/* <h2>Tours Project Setup</h2> */}
       <Tours tours={tours} removeItem={removeItem} />
     </main>
   )

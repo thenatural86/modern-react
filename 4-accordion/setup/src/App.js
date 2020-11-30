@@ -5,10 +5,13 @@ function App() {
   const [items, setItems] = useState(data)
 
   return (
-    <>
-      <h2>Yolo</h2>
-      <SingleQuestion items={items} />
-    </>
+    <main>
+      <div className='container'>
+        {items.map((item) => {
+          return <SingleQuestion {...item} />
+        })}
+      </div>
+    </main>
   )
 }
 
