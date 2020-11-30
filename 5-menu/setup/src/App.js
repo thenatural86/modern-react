@@ -3,12 +3,19 @@ import Menu from './Menu'
 import Categories from './Categories'
 import items from './data'
 
+// get unique categories from list
+const allCategories = ['all', ...new Set(items.map((item) => item.category))]
+
 function App() {
   const [foods, setFoods] = useState(items)
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState(allCategories)
 
   const filterItems = (category) => {
-    let newItems = foods.filter((food) => food.category === category)
+    if (category === 'all') {
+      setFoods(items)
+      return
+    }
+    const newItems = items.filter((food) => food.category === category)
     setFoods(newItems)
   }
 
@@ -19,7 +26,7 @@ function App() {
           <h2>Goodies</h2>
           <div className='underline'></div>
         </div>
-        <Categories filterItems={filterItems} />
+        <Categories categories={categories} filterItems={filterItems} />
         <Menu foods={foods} />
       </section>
     </main>
