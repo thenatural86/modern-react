@@ -37,8 +37,11 @@ const Review = () => {
   }
 
   const yoloClick = (index) => {
-    index = Math.floor(Math.random() * people.length)
-    setIndex(index)
+    let random = Math.floor(Math.random() * people.length)
+    if (random === index) {
+      random = index + 1
+    }
+    setIndex(checkNum(random))
   }
 
   return (
