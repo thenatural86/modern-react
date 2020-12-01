@@ -7,19 +7,34 @@ function App() {
   const [people, setPeople] = useState(data)
   const [value, setValue] = useState(0)
 
-  useEffect(() => {
-    const lastIndex = people.length - 1
-    if (value < 0) {
-      setValue(lastIndex)
-    }
-    if (value > lastIndex) {
-      setValue(0)
-    }
-  }, [value, people])
+  const nextSlide = () => {
+    setValue((oldValue) => {
+      let value = oldValue + 1
+      if (value > people.length - 1) {
+        value = 0
+      }
+      return value
+    })
+  }
+  const prevSlide = () => {
+    setValue((oldValue) => {
+      let value = oldValue - 1
+      if (value < 0) {
+        value = people.length - 1
+      }
+      return value
+    })
+  }
 
   useEffect(() => {
     let slider = setInterval(() => {
-      setValue(value + 1)
+      setValue((oldValue) => {
+        let value = oldValue + 1
+        if (value > people.length - 1) {
+          value = 0
+        }
+        return value
+      })
     }, 3000)
     return () => clearInterval(slider)
   }, [value])
@@ -54,10 +69,10 @@ function App() {
             </article>
           )
         })}
-        <button className='prev' onClick={() => setValue(value - 1)}>
+        <button className='prev' onClick={prevSlide}>
           <FiChevronLeft />
         </button>
-        <button className='next' onClick={() => setValue(value + 1)}>
+        <button className='next' onClick={nextSlide}>
           <FiChevronRight />
         </button>
       </div>
@@ -66,36 +81,3 @@ function App() {
 }
 
 export default App
-
-// const checkNum = (num) => {
-//   if (num > people.length - 1) {
-//     return 0
-//   }
-//   if (num < 0) {
-//     return people.length - 1
-//   }
-//   return num
-// }
-
-// const prevPeople = () => {
-//   setValue((value) => {
-//     let newValue = value - 1
-//     return checkNum(newValue)
-//   })
-// }
-
-// const nextPeople = () => {
-//   setValue((value) => {
-//     let newValue = value + 1
-//     return checkNum(newValue)
-//   })
-// }
-
-{
-  /* <h4>{name}</h4>
-<img src={image} alt={name} />
-<h4>{quote}</h4>
-<h4>{title}</h4>
-<FiChevronLeft onClick={prevPeople} />
-<FiChevronRight onClick={nextPeople} /> */
-}
