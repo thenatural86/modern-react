@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FaAngleDoubleRight } from 'react-icons/fa'
-// ATTENTION!!!!!!!!!!
-// I SWITCHED TO PERMANENT DOMAIN
+
 const url = 'https://course-api.com/react-tabs-project'
 function App() {
   const [loading, setLoading] = useState(true)
@@ -14,6 +13,7 @@ function App() {
     setTabs(data)
     setLoading(false)
   }
+
   console.log(tabs)
   useEffect(() => {
     getData()
@@ -35,6 +35,15 @@ function App() {
       </div>
       <div className='jobs-center'>
         {/* button container */}
+        <div className='btn-container'>
+          {tabs.map((item, index) => {
+            return (
+              <button key={item.id} onClick={() => setValue(index)}>
+                {item.company}
+              </button>
+            )
+          })}
+        </div>
         {/* job info */}
         <article className='job-info'>
           <h3>{title}</h3>
