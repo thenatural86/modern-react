@@ -38,7 +38,11 @@ function App() {
         <div className='btn-container'>
           {tabs.map((item, index) => {
             return (
-              <button key={item.id} onClick={() => setValue(index)}>
+              <button
+                key={item.id}
+                onClick={() => setValue(index)}
+                className={`job-btn ${index === value ? 'active-btn' : null}`}
+              >
                 {item.company}
               </button>
             )
