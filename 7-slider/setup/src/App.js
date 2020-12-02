@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     let slider = setInterval(() => {
       setValue(value + 1)
-    }, 3000)
+    }, 5000)
     return () => clearInterval(slider)
   }, [value])
 
@@ -66,36 +66,3 @@ function App() {
 }
 
 export default App
-
-// const checkNum = (num) => {
-//   if (num > people.length - 1) {
-//     return 0
-//   }
-//   if (num < 0) {
-//     return people.length - 1
-//   }
-//   return num
-// }
-
-// const prevPeople = () => {
-//   setValue((value) => {
-//     let newValue = value - 1
-//     return checkNum(newValue)
-//   })
-// }
-
-// const nextPeople = () => {
-//   setValue((value) => {
-//     let newValue = value + 1
-//     return checkNum(newValue)
-//   })
-// }
-
-{
-  /* <h4>{name}</h4>
-<img src={image} alt={name} />
-<h4>{quote}</h4>
-<h4>{title}</h4>
-<FiChevronLeft onClick={prevPeople} />
-<FiChevronRight onClick={nextPeople} /> */
-}
