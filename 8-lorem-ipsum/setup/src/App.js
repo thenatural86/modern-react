@@ -6,8 +6,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setTexts(data)
-    console.log(count)
+    let amount = parseInt(count)
+    setTexts(data.slice(0, amount))
   }
   return (
     <section className='section-center'>
