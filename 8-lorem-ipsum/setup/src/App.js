@@ -6,9 +6,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('yolo world')
+    setTexts(data)
+    console.log(count)
   }
-
   return (
     <section className='section-center'>
       <h3>Tired of the same ol Lorem Ipsum?</h3>
@@ -26,21 +26,9 @@ function App() {
         </button>
       </form>
       <article className='lorem-text'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde,
-          aperiam.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde,
-          aperiam.
-        </p>
-        {/* {texts.map((text) => {
-          return (
-            <div>
-              <p>{text}</p>
-            </div>
-          )
-        })} */}
+        {texts.map((text, index) => {
+          return <p key={index}> {text}</p>
+        })}
       </article>
     </section>
   )
