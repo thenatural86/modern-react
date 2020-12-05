@@ -7,27 +7,34 @@ function App() {
   const [list, setList] = useState([])
   const [isEditing, setIsEditing] = useState(false)
   const [editId, setEditId] = useState(null)
-  const [alert, setAlert] = useState({})
+  const [alert, setAlert] = useState({ show: false, msg: '', type: '' })
 
   const submitHandler = (e) => {
     e.preventDefault()
     console.log(name)
   }
   return (
-    <section className='container'>
-      <form onSubmit={submitHandler}>
-        <input
-          type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder='grocery item'
-        />
-        <button className='btn' type='submit'>
-          Submit
-        </button>
+    <section className='section-center'>
+      <form className='grocery-form' onSubmit={submitHandler}>
+        {alert.show ? <Alert /> : null}
+        <h3>grocery bud</h3>
+        <div className='form-control'>
+          <input
+            className='grocery'
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder='e.g. bacy eggy cheesy'
+          />
+          <button className='submit-btn' type='submit'>
+            {isEditing ? 'edit' : 'submit'}
+          </button>
+        </div>
       </form>
-      <List />
-      <Alert />
+      <div className='grocery-container'>
+        <List />
+        <button className='clear-btn'>clear items</button>
+      </div>
     </section>
   )
 }
