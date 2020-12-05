@@ -7,25 +7,36 @@ function App() {
   const [list, setList] = useState([])
   const [isEditing, setIsEditing] = useState(false)
   const [editId, setEditId] = useState(null)
-  const [alert, setAlert] = useState({ show: false, msg: '', type: '' })
+  const [alert, setAlert] = useState({
+    show: false,
+    msg: '',
+    type: '',
+  })
 
   const submitHandler = (e) => {
     e.preventDefault()
     if (!name) {
       // display alert
+      showAlert(true, 'danger', 'please enter value')
     } else if (name & isEditing) {
       // deal with edit
     } else {
       // show alert
+      showAlert(true, 'success', 'item has been added')
       const newItem = { id: new Date().getTime().toString(), title: name }
       setList([...list, newItem])
       setName('')
     }
   }
+
+  const showAlert = (show = false, type = '', msg = '') => {
+    setAlert({ show, msg, type })
+  }
+
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={submitHandler}>
-        {alert.show ? <Alert /> : null}
+        {alert.show ? <Alert {...alert} removeAlert={showAlert} /> : null}
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input
