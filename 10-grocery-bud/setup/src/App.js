@@ -45,7 +45,6 @@ function App() {
   const deleteItem = (id) => {
     console.log(id)
     let newList = list.filter((item) => item.id !== id)
-    // console.log(newList)
     setList(newList)
   }
 
