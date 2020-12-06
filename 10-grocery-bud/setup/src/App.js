@@ -43,7 +43,7 @@ function App() {
   }
 
   const deleteItem = (id) => {
-    console.log(id)
+    showAlert(true, 'danger', 'item removed')
     let newList = list.filter((item) => item.id !== id)
     setList(newList)
   }
@@ -51,7 +51,9 @@ function App() {
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={submitHandler}>
-        {alert.show ? <Alert {...alert} removeAlert={showAlert} /> : null}
+        {alert.show ? (
+          <Alert {...alert} removeAlert={showAlert} list={list} />
+        ) : null}
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input
