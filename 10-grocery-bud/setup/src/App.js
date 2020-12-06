@@ -42,6 +42,13 @@ function App() {
     console.log('yolo', id)
   }
 
+  const deleteItem = (id) => {
+    console.log(id)
+    let newList = list.filter((item) => item.id !== id)
+    // console.log(newList)
+    setList(newList)
+  }
+
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={submitHandler}>
@@ -62,7 +69,7 @@ function App() {
       </form>
       {list.length > 0 ? (
         <div className='grocery-container'>
-          <List items={list} editItem={editItem} />
+          <List items={list} editItem={editItem} deleteItem={deleteItem} />
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
