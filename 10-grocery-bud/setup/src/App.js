@@ -38,6 +38,10 @@ function App() {
     setList([])
   }
 
+  const editItem = (id) => {
+    console.log('yolo', id)
+  }
+
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={submitHandler}>
@@ -58,7 +62,7 @@ function App() {
       </form>
       {list.length > 0 ? (
         <div className='grocery-container'>
-          <List items={list} />
+          <List items={list} editItem={editItem} />
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
