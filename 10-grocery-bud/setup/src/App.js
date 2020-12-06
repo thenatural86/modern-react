@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import List from './List'
 import Alert from './Alert'
 
@@ -20,6 +20,18 @@ function App() {
       showAlert(true, 'danger', 'please enter value')
     } else if (name & isEditing) {
       // deal with edit
+      setList(
+        list.map((item) => {
+          if (item.id === editId) {
+            return { ...item, title: name }
+          }
+          return item
+        })
+      )
+      setName('')
+      setEditId(null)
+      setIsEditing(false)
+      showAlert(true, 'success', 'item has been edited')
     } else {
       // show alert
       showAlert(true, 'success', 'item has been added')
@@ -39,7 +51,10 @@ function App() {
   }
 
   const editItem = (id) => {
-    console.log('yolo', id)
+    const exactItem = list.find((item) => item.id === id)
+    setIsEditing(true)
+    setEditId(id)
+    setName(exactItem.title)
   }
 
   const deleteItem = (id) => {
