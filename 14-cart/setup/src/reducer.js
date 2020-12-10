@@ -18,12 +18,14 @@ const reducer = (state, action) => {
       })
       return { ...state, cart: tempCart }
     case 'DECREASE':
-      let temp = state.cart.map((item) => {
-        if (item.id === action.payload) {
-          return { ...item, amount: item.amount - 1 }
-        }
-        return item
-      })
+      let temp = state.cart
+        .map((item) => {
+          if (item.id === action.payload) {
+            return { ...item, amount: item.amount - 1 }
+          }
+          return item
+        })
+        .filter((item) => item.amount !== 0)
       return { ...state, cart: temp }
     default:
       break
