@@ -11,8 +11,11 @@ function App() {
     // then set followers to the data array sub the page number passed in
     setFollowers(data[page])
     // once loading changes from true to false, then rerun callback function
-  }, [loading])
+  }, [loading, page])
 
+  const handlePage = (index) => {
+    setPage(index)
+  }
   return (
     <main>
       <div className='section-title'>
@@ -29,7 +32,11 @@ function App() {
           <div className='btn-container'>
             {data.map((item, index) => {
               return (
-                <button key={index} className='page-btn'>
+                <button
+                  key={index}
+                  className={`page-btn ${index === page ? 'active-btn' : null}`}
+                  onClick={() => handlePage(index)}
+                >
                   {index + 1}
                 </button>
               )
