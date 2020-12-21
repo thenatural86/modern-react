@@ -1,0 +1,2 @@
+Access key - Zw1r04i95sNLNi0x7BxSI0BNYb-25ACgm5YqLb1dBJ8
+Secret key - gSC6Drgk3xczTGtUFXCCmOOyNyF4eIuy3NkU10MGevg
