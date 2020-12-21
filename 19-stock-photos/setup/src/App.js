@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import Photo from './Photo'
-// const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`
 
 const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`
 
