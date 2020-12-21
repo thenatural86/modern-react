@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Photo = ({
-  id,
   urls: { regular },
   alt_description,
   likes,
