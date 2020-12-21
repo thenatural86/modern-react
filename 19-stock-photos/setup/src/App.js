@@ -46,7 +46,12 @@ function App() {
         </form>
       </section>
       <section className='photos'>
-        <div className='photos-center'></div>
+        <div className='photos-center'>
+          {photos.map((item) => {
+            return <Photo key={item.id} {...item} />
+          })}
+        </div>
+        {loading ? <h2 className='loading'>Loading...</h2> : null}
       </section>
     </main>
   )

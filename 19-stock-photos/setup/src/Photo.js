@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Photo = () => {
+const Photo = ({ id }) => {
   return <h2>photo component</h2>
 }
 
