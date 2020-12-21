@@ -25,8 +25,27 @@ function App() {
       console.log(error)
     }
   }
+  // fetch images on loading
   useEffect(() => {
     fetchImages()
+  }, [])
+
+  // listen for scroll event
+  // check for 1 - inner height of window ,2 - how much we have scrolled ,3 - what is height of document
+  // console.log(`innerHeight ${window.innerHeight}`)
+  // console.log(`scroll-y ${window.scrollY}`)
+  // console.log(`body height ${document.body.scrollHeight}`)
+  useEffect(() => {
+    const event = window.addEventListener('scroll', () => {
+      // if we are not loading and we have reached the bottom of the page
+      if (
+        !loading &&
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 2
+      ) {
+        console.log('yolo')
+      }
+    })
+    return () => window.removeEventListener('scroll', event)
   }, [])
 
   const handleSubmit = (e) => {
@@ -47,9 +66,6 @@ function App() {
       <section className='photos'>
         <div className='photos-center'>
           {photos.map((item) => {
-            {
-              /* console.log(item) */
-            }
             return <Photo key={item.id} {...item} />
           })}
         </div>
