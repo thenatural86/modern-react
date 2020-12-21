@@ -10,15 +10,19 @@ const searchUrl = `https://api.unsplash.com/search/photos/`
 function App() {
   const [loading, setLoading] = useState(false)
   const [photos, setPhotos] = useState([])
+  const [page, setPage] = useState(1)
 
   const fetchImages = async () => {
     setLoading(true)
     let url
-    url = `${mainUrl}${clientID}`
+    let urlPage = `&page=${page}`
+    url = `${mainUrl}${clientID}${urlPage}`
     try {
       const response = await fetch(url)
       const data = await response.json()
-      setPhotos(data)
+      setPhotos((oldPhotos) => {
+        return [...oldPhotos, ...data]
+      })
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -28,9 +32,9 @@ function App() {
   // fetch images on loading
   useEffect(() => {
     fetchImages()
-  }, [])
+  }, [page])
 
-  // listen for scroll event
+  // infinite scroll useEffect, listen for scroll event
   // check for 1 - inner height of window ,2 - how much we have scrolled ,3 - what is height of document
   // console.log(`innerHeight ${window.innerHeight}`)
   // console.log(`scroll-y ${window.scrollY}`)
@@ -42,7 +46,9 @@ function App() {
         !loading &&
         window.innerHeight + window.scrollY >= document.body.scrollHeight - 2
       ) {
-        console.log('yolo')
+        setPage((oldValue) => {
+          return oldValue + 1
+        })
       }
     })
     return () => window.removeEventListener('scroll', event)
