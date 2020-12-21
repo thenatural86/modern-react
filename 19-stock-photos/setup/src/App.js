@@ -45,6 +45,7 @@ function App() {
   // fetch images on loading
   useEffect(() => {
     fetchImages()
+    // eslint-disable-next-line
   }, [page])
 
   // infinite scroll useEffect, listen for scroll event
@@ -65,6 +66,7 @@ function App() {
       }
     })
     return () => window.removeEventListener('scroll', event)
+    // eslint-disable-next-line
   }, [])
 
   const handleSubmit = (e) => {
@@ -91,7 +93,6 @@ function App() {
       <section className='photos'>
         <div className='photos-center'>
           {photos.map((item, index) => {
-            console.log(item)
             return <Photo key={index} {...item} />
           })}
         </div>
