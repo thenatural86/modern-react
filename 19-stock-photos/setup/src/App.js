@@ -34,7 +34,6 @@ function App() {
     console.log('hello')
   }
 
-  console.log(photos)
   return (
     <main>
       <section className='search'>
@@ -48,6 +47,9 @@ function App() {
       <section className='photos'>
         <div className='photos-center'>
           {photos.map((item) => {
+            {
+              /* console.log(item) */
+            }
             return <Photo key={item.id} {...item} />
           })}
         </div>
