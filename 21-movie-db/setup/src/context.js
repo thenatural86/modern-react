@@ -5,13 +5,13 @@ export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState({ show: false, msg: '' })
   const [movies, setMovies] = useState([])
   const [query, setQuery] = useState('batman')
 
   const fetchMovies = async (url) => {
-    setLoading(true)
+    setIsLoading(true)
     try {
       const response = await fetch(url)
       const data = await response.json()
@@ -22,7 +22,7 @@ const AppProvider = ({ children }) => {
       } else {
         setError({ show: true, msg: data.Error })
       }
-      setLoading(false)
+      setIsLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -31,9 +31,8 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchMovies(`${API_ENDPOINT}&s=${query}`)
   }, [query])
-
   return (
-    <AppContext.Provider value={(loading, error, movies, query, setQuery)}>
+    <AppContext.Provider value={{ isLoading, error, movies, query, setQuery }}>
       {children}
     </AppContext.Provider>
   )
