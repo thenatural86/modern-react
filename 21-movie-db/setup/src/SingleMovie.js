@@ -1,31 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { API_ENDPOINT } from './context'
+// import { API_ENDPOINT } from './context'
+import useFetch from './useFetch'
 
 const SingleMovie = () => {
   // useParams hook from react-router allows use to get the value of id we pass in Link tag in Movies component
   const { id } = useParams()
-  const [movie, setMovie] = useState({})
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState({ show: false, msg: '' })
+  const { isLoading, error, data: movie } = useFetch(`&i=${id}`)
 
-  const fetchMovie = async (url) => {
-    // setLoading(true)
-    const response = await fetch(url)
-    const data = await response.json()
-    if (data.Response === 'False') {
-      setError({ show: true, msg: data.Error })
-      setLoading(false)
-    } else {
-      setMovie(data)
-      setLoading(false)
-    }
-  }
-  useEffect(() => {
-    fetchMovie(`${API_ENDPOINT}&i=${id}`)
-  }, [id])
-
-  if (loading) return <div className='loading'></div>
+  if (isLoading) return <div className='loading'></div>
   if (error.show) {
     return (
       <div className='page-error'>
@@ -43,6 +26,7 @@ const SingleMovie = () => {
       <div className='single-movie-info'>
         <h2>{title}</h2>
         <h4>{year}</h4>
+        <p>{plot}</p>
         <Link to='/' className='btn'>
           Back to Movies
         </Link>
