@@ -26,7 +26,7 @@ const AppProvider = ({ children }) => {
   // async data fetching function that dispatches SET_LOADING action
   const fetchStories = async (url) => {
     // to make a change to state use the dispatch function, which takes in an object
-    dispatch({ type: 'SET_LOADING' })
+    dispatch({ type: SET_LOADING })
   }
 
   // invokes fetchStories when app loads
