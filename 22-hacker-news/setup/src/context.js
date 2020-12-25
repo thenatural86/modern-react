@@ -11,7 +11,10 @@ import reducer from './reducer'
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?'
 
-const initialState = {}
+// obj that contains initial state values
+const initialState = {
+  isLoading: true,
+}
 
 const AppContext = React.createContext()
 
@@ -20,13 +23,16 @@ const AppProvider = ({ children }) => {
   // pass in reducer function, responsible for setting up state, and initial state
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // data fetching function
+  // async data fetching function that dispatches SET_LOADING action
   const fetchStories = async (url) => {
     // to make a change to state use the dispatch function, which takes in an object
     dispatch({ type: 'SET_LOADING' })
-    const response = await fetch(url)
-    const data = await response.json()
   }
+
+  // invokes fetchStories when app loads
+  useEffect(() => {
+    fetchStories()
+  }, [])
   return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
 }
 // make sure use
