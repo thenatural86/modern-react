@@ -33,7 +33,11 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchStories()
   }, [])
-  return <AppContext.Provider value='hello'>{children}</AppContext.Provider>
+
+  // pass in all the properties in state from useReducer
+  return (
+    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+  )
 }
 // make sure use
 export const useGlobalContext = () => {
