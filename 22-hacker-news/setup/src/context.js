@@ -53,9 +53,13 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REMOVE_STORY, payload: id })
   }
 
+  const handleSearch = (query) => {
+    dispatch({ type: HANDLE_SEARCH, payload: query })
+  }
+
   // pass in all the properties in state from useReducer
   return (
-    <AppContext.Provider value={{ ...state, removeStory }}>
+    <AppContext.Provider value={{ ...state, removeStory, handleSearch }}>
       {children}
     </AppContext.Provider>
   )
