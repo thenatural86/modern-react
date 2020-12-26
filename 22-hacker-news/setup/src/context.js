@@ -46,7 +46,7 @@ const AppProvider = ({ children }) => {
   // invokes fetchStories when app loads
   useEffect(() => {
     fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
-  }, [state.query])
+  }, [state.query, state.page])
 
   const removeStory = (id) => {
     // console.log('remove', id)
@@ -57,9 +57,15 @@ const AppProvider = ({ children }) => {
     dispatch({ type: HANDLE_SEARCH, payload: query })
   }
 
+  const handlePage = (value) => {
+    console.log(value)
+    dispatch({ type: HANDLE_PAGE, payload: value })
+  }
   // pass in all the properties in state from useReducer
   return (
-    <AppContext.Provider value={{ ...state, removeStory, handleSearch }}>
+    <AppContext.Provider
+      value={{ ...state, removeStory, handleSearch, handlePage }}
+    >
       {children}
     </AppContext.Provider>
   )
