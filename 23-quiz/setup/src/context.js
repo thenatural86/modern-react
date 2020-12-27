@@ -27,13 +27,12 @@ const AppProvider = ({ children }) => {
   const fetchQuestions = async (url) => {
     setLoading(true)
     setWaiting(false)
-    const response = await axios(url).catch((err) => console.log(error))
-    // console.log(response)
+    const response = await axios(url).catch((err) => console.log(err))
     if (response) {
       const data = response.data.results
       if (data.length > 0) {
-        setLoading(false)
         setQuestions(data)
+        setLoading(false)
         setWaiting(false)
         setError(false)
       } else {
@@ -44,7 +43,7 @@ const AppProvider = ({ children }) => {
       setWaiting(true)
     }
   }
-  // console.log(questions)
+  console.log(questions)
 
   useEffect(() => {
     fetchQuestions(tempUrl)
