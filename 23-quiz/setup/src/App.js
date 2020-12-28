@@ -23,6 +23,8 @@ function App() {
   }
   const { question, incorrect_answers, correct_answer } = questions[index]
   // const answers = [...incorrect_answers, correct_answer]
+
+  // ** randomize placement of correct answer **
   // add incorrect answers to answers array
   let answers = [...incorrect_answers]
   // generate random number btw 0-3
