@@ -22,8 +22,22 @@ function App() {
     return <Loading />
   }
   const { question, incorrect_answers, correct_answer } = questions[index]
-  const answers = [...incorrect_answers, correct_answer]
-  console.log(questions)
+  // const answers = [...incorrect_answers, correct_answer]
+  // add incorrect answers to answers array
+  let answers = [...incorrect_answers]
+  // generate random number btw 0-3
+  const tempIndex = Math.floor(Math.random() * 4)
+  // console.log(tempIndex)
+  if (tempIndex === 3) {
+    // add correct number to end of answers array
+    answers.push(correct_answer)
+  } else {
+    // push item with tempIndex number to end of array
+    answers.push(answers[tempIndex])
+    // place correct answer at vacated spot
+    answers[tempIndex] = correct_answer
+  }
+  // console.log(questions)
   return (
     <main>
       <Modal />
