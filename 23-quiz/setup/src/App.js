@@ -13,6 +13,7 @@ function App() {
     index,
     correct,
     nextQuestion,
+    checkAnswer,
   } = useGlobalContext()
   if (waiting) {
     return <SetupForm />
@@ -22,7 +23,7 @@ function App() {
   }
   const { question, incorrect_answers, correct_answer } = questions[index]
   const answers = [...incorrect_answers, correct_answer]
-
+  console.log(questions)
   return (
     <main>
       {/* <Modal /> */}
@@ -39,6 +40,7 @@ function App() {
                   key={index}
                   className='answer-btn'
                   dangerouslySetInnerHTML={{ __html: answer }}
+                  onClick={() => checkAnswer(correct_answer === answer)}
                 ></button>
               )
             })}

@@ -56,6 +56,14 @@ const AppProvider = ({ children }) => {
     })
   }
 
+  const checkAnswer = (value) => {
+    // console.log(value)
+    if (value) {
+      setCorrect((oldValue) => oldValue + 1)
+    }
+    nextQuestion()
+  }
+
   useEffect(() => {
     fetchQuestions(tempUrl)
   }, [])
@@ -71,6 +79,7 @@ const AppProvider = ({ children }) => {
         error,
         isModalOpen,
         nextQuestion,
+        checkAnswer,
       }}
     >
       {children}
